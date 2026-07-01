@@ -1,0 +1,46 @@
+[
+    {
+        "merged": "com.google.android.youtube.pro.app-debug-32:/mipmap-xhdpi_app_icon.jpg.flat",
+        "source": "com.google.android.youtube.pro.app-main-34:/mipmap-xhdpi/app_icon.jpg"
+    },
+    {
+        "merged": "com.google.android.youtube.pro.app-debug-32:/drawable_ic_skip_previous_white.xml.flat",
+        "source": "com.google.android.youtube.pro.app-main-34:/drawable/ic_skip_previous_white.xml"
+    },
+    {
+        "merged": "com.google.android.youtube.pro.app-debug-32:/drawable_ic_skip_next_white.xml.flat",
+        "source": "com.google.android.youtube.pro.app-main-34:/drawable/ic_skip_next_white.xml"
+    },
+    {
+        "merged": "com.google.android.youtube.pro.app-debug-32:/drawable_ic_pause_white.xml.flat",
+        "source": "com.google.android.youtube.pro.app-main-34:/drawable/ic_pause_white.xml"
+    },
+    {
+        "merged": "com.google.android.youtube.pro.app-debug-32:/drawable_ic_play_arrow_white.xml.flat",
+        "source": "com.google.android.youtube.pro.app-main-34:/drawable/ic_play_arrow_white.xml"
+    },
+    {
+        "merged": "com.google.android.youtube.pro.app-debug-32:/drawable-xhdpi_monochrome.xml.flat",
+        "source": "com.google.android.youtube.pro.app-main-34:/drawable-xhdpi/monochrome.xml"
+    },
+    {
+        "merged": "com.google.android.youtube.pro.app-debug-32:/mipmap-xhdpi-v26_app_icon.xml.flat",
+        "source": "com.google.android.youtube.pro.app-main-34:/mipmap-xhdpi-v26/app_icon.xml"
+    },
+    {
+        "merged": "com.google.android.youtube.pro.app-debug-32:/drawable-xhdpi_notification.xml.flat",
+        "source": "com.google.android.youtube.pro.app-main-34:/drawable-xhdpi/notification.xml"
+    },
+    {
+        "merged": "com.google.android.youtube.pro.app-debug-32:/layout_main.xml.flat",
+        "source": "com.google.android.youtube.pro.app-main-34:/layout/main.xml"
+    },
+    {
+        "merged": "com.google.android.youtube.pro.app-debug-32:/menu_top_app_bar_menu.xml.flat",
+        "source": "com.google.android.youtube.pro.app-main-34:/menu/top_app_bar_menu.xml"
+    },
+    {
+        "merged": "com.google.android.youtube.pro.app-debug-32:/drawable-xhdpi_foreground.xml.flat",
+        "source": "com.google.android.youtube.pro.app-main-34:/drawable-xhdpi/foreground.xml"
+    }
+]
