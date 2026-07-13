@@ -71,14 +71,17 @@ public class MainActivity extends Activity {
         web = findViewById(R.id.web);
         
         web.getSettings().setJavaScriptEnabled(true);
-        web.getSettings().setSupportZoom(true);
-        web.getSettings().setBuiltInZoomControls(true);
+        web.getSettings().setSupportZoom(false);
+        web.getSettings().setBuiltInZoomControls(false);
         web.getSettings().setDisplayZoomControls(false);
         web.getSettings().setDomStorageEnabled(true);
         web.getSettings().setDatabaseEnabled(true);
         web.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);
         web.getSettings().setLoadsImagesAutomatically(true);
-        web.getSettings().setUseWideViewPort(true);
+        web.getSettings().setUseWideViewPort(false);
+        web.getSettings().setLoadWithOverviewMode(false);
+        web.getSettings().setTextZoom(100);
+        web.getSettings().setUserAgentString(WebSettings.getDefaultUserAgent(this));
         web.getSettings().setMediaPlaybackRequiresUserGesture(false); 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             web.getSettings().setOffscreenPreRaster(true);
@@ -106,6 +109,7 @@ public class MainActivity extends Activity {
                 url = sharedText;
             }
         }
+        url = normalizeMobileYouTubeUrl(url);
         
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
           web.getSettings().setMixedContentMode(android.webkit.WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
@@ -124,6 +128,20 @@ public class MainActivity extends Activity {
         
         
     }
+
+            private String normalizeMobileYouTubeUrl(String rawUrl) {
+                try {
+                    Uri uri = Uri.parse(rawUrl);
+                    String host = uri.getHost();
+                    if (host == null) return rawUrl;
+
+                    if (host.equals("youtube.com") || host.equals("www.youtube.com")) {
+                        return uri.buildUpon().authority("m.youtube.com").build().toString();
+                    }
+                } catch (Exception ignored) {
+                }
+                return rawUrl;
+            }
          
 
    

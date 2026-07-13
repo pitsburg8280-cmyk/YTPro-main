@@ -8,6 +8,25 @@
   var sleepTimerEnd = 0;
   var userPauseUntil = 0;
 
+  function enforceMobileViewport() {
+    try {
+      var vp = document.querySelector("meta[name='viewport']");
+      if (!vp) {
+        vp = document.createElement("meta");
+        vp.setAttribute("name", "viewport");
+        (document.head || document.documentElement).appendChild(vp);
+      }
+      vp.setAttribute("content", "width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover");
+
+      if (!document.getElementById("ytproMobileRootCss")) {
+        var st = document.createElement("style");
+        st.id = "ytproMobileRootCss";
+        st.textContent = "html,body{max-width:100vw !important;overflow-x:hidden !important;-webkit-text-size-adjust:100% !important;touch-action:manipulation;} ytm-app,ytm-mobile-topbar-renderer,ytm-watch{max-width:100vw !important;}";
+        (document.head || document.documentElement).appendChild(st);
+      }
+    } catch (_e) {}
+  }
+
   function getVideo() {
     return document.querySelector("video.video-stream") || document.querySelector("video");
   }
@@ -304,6 +323,7 @@
   }
 
   function boot() {
+    enforceMobileViewport();
     continueWatchingIfPrompted();
     setupAggressivePlaybackGuard();
     ensurePipVideoVisible();
@@ -335,6 +355,7 @@
   });
 
   setInterval(function () {
+    enforceMobileViewport();
     continueWatchingIfPrompted();
     setupAggressivePlaybackGuard();
     ensurePipVideoVisible();
