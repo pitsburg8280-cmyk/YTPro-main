@@ -150,7 +150,7 @@
     if (document.getElementById("ytproNativeTimer")) return;
     var chip = document.createElement("div");
     chip.id = "ytproNativeTimer";
-    chip.style.cssText = "position:fixed;right:10px;top:70px;z-index:2147483647;padding:6px 10px;border-radius:999px;background:rgba(0,0,0,.65);color:#fff;font-size:12px;font-family:monospace;backdrop-filter:blur(4px);";
+    chip.style.cssText = "position:fixed;right:10px;top:calc(env(safe-area-inset-top,0px) + 10px);max-width:calc(100vw - 20px);z-index:2147483647;padding:8px 12px;border-radius:999px;background:rgba(0,0,0,.72);color:#fff;font-size:12px;font-family:monospace;line-height:1;letter-spacing:.2px;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);box-shadow:0 4px 14px rgba(0,0,0,.28);";
     chip.textContent = "00:00 / 00:00";
     document.body.appendChild(chip);
 
@@ -185,11 +185,11 @@
     var entries = readHistory();
     var wrap = document.createElement("div");
     wrap.id = "ytproNativeHistoryOverlay";
-    wrap.style.cssText = "position:fixed;inset:0;background:rgba(0,0,0,.78);z-index:2147483647;padding:12px;overflow:auto;";
+    wrap.style.cssText = "position:fixed;inset:0;background:rgba(0,0,0,.82);z-index:2147483647;padding:10px 10px calc(env(safe-area-inset-bottom,0px) + 12px);overflow:auto;";
 
     var card = document.createElement("div");
-    card.style.cssText = "max-width:860px;margin:0 auto;background:#111;color:#fff;border-radius:16px;padding:12px;font-family:sans-serif;";
-    card.innerHTML = "<div style='display:flex;justify-content:space-between;align-items:center;gap:10px;'><b style='font-size:18px'>Historial de videos</b><div><button id='ytproNativeClearHistory' style='margin-right:8px;border:0;border-radius:10px;padding:8px 12px;background:#333;color:#fff'>Limpiar</button><button id='ytproNativeCloseHistory' style='border:0;border-radius:10px;padding:8px 12px;background:#cc2a2a;color:#fff'>Cerrar</button></div></div><div id='ytproNativeHistoryList' style='margin-top:10px'></div>";
+    card.style.cssText = "width:100%;max-width:680px;box-sizing:border-box;margin:0 auto;background:#111;color:#fff;border-radius:14px;padding:12px;font-family:sans-serif;";
+    card.innerHTML = "<div style='display:flex;flex-direction:column;gap:10px;'><b style='font-size:18px;line-height:1.2'>Historial de videos</b><div style='display:flex;gap:8px;flex-wrap:wrap;'><button id='ytproNativeClearHistory' style='flex:1 1 120px;min-height:42px;border:0;border-radius:11px;padding:8px 12px;background:#333;color:#fff;font-size:14px'>Limpiar</button><button id='ytproNativeCloseHistory' style='flex:1 1 120px;min-height:42px;border:0;border-radius:11px;padding:8px 12px;background:#cc2a2a;color:#fff;font-size:14px'>Cerrar</button></div></div><div id='ytproNativeHistoryList' style='margin-top:10px'></div>";
 
     var list = card.querySelector("#ytproNativeHistoryList");
     if (!entries.length) {
@@ -198,9 +198,9 @@
       var html = "";
       for (var i = 0; i < entries.length; i++) {
         var e = entries[i];
-        html += "<a href='" + (e.url || "#") + "' style='display:flex;gap:10px;align-items:center;padding:8px;border-radius:10px;background:#1b1b1b;color:#fff;text-decoration:none;margin-bottom:8px'>" +
-          "<img src='" + (e.thumb || "") + "' alt='' style='width:88px;height:50px;object-fit:cover;border-radius:8px;background:#000'>" +
-          "<div style='min-width:0'><div style='white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:14px'>" + (e.title || "Video") + "</div><div style='opacity:.7;font-size:12px'>" + (e.savedAt || "") + "</div></div>" +
+        html += "<a href='" + (e.url || "#") + "' style='display:flex;gap:10px;align-items:center;padding:8px;border-radius:11px;background:#1b1b1b;color:#fff;text-decoration:none;margin-bottom:8px'>" +
+          "<img src='" + (e.thumb || "") + "' alt='' style='width:96px;height:54px;object-fit:cover;border-radius:8px;background:#000;flex:0 0 auto'>" +
+          "<div style='min-width:0'><div style='display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;font-size:14px;line-height:1.25'>" + (e.title || "Video") + "</div><div style='opacity:.7;font-size:12px;margin-top:3px'>" + (e.savedAt || "") + "</div></div>" +
           "</a>";
       }
       list.innerHTML = html;
@@ -248,14 +248,12 @@
 
     var box = document.createElement("div");
     box.id = "ytproNativeTools";
-    box.style.cssText = "display:block;height:auto;min-height:unset;padding:10px;margin-top:8px;border-radius:12px;background:rgba(127,127,127,.13);";
-    box.innerHTML = "<div style='display:flex;justify-content:space-between;align-items:center;height:auto;padding:0;margin:0 0 8px 0'><b style='font-size:14px'>Ajustes de red</b><label style='display:flex;align-items:center;gap:8px;font-size:13px'><span>Enable Conscrypt</span><input type='checkbox' id='ytproEnableConscrypt'></label></div>" +
-      "<div style='display:flex;gap:10px;flex-wrap:wrap;align-items:center;height:auto;padding:0;margin:0 0 8px 0'>" +
-      "<label style='font-size:12px'>DNS</label><select id='ytproDnsProvider' style='border:0;border-radius:8px;padding:6px 8px'><option value='system'>System</option><option value='google'>Google</option><option value='cloudflare'>Cloudflare</option></select>" +
-      "<label style='font-size:12px'>Timeout (s)</label><input id='ytproTimeoutSec' type='number' min='5' max='120' step='1' style='width:70px;border:0;border-radius:8px;padding:6px 8px'>" +
-      "<button id='ytproSaveNetwork' style='height:auto;padding:6px 10px;border-radius:10px;border:0'>Guardar red</button>" +
-      "</div>" +
-      "<div style='display:flex;gap:8px;flex-wrap:wrap;height:auto;padding:0;margin:0'><button id='ytproBtnTimer' style='height:auto;padding:8px 12px;border-radius:10px;border:0'>Temporizador</button><button id='ytproBtnHistory' style='height:auto;padding:8px 12px;border-radius:10px;border:0'>Ver historial</button></div>";
+    box.style.cssText = "display:block;height:auto;min-height:unset;padding:12px;margin-top:10px;border-radius:14px;background:rgba(127,127,127,.13);box-sizing:border-box;";
+    box.innerHTML = "<style>#ytproNativeTools .row{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:0 0 10px 0}#ytproNativeTools .title{font-size:15px;font-weight:700;line-height:1.2}#ytproNativeTools label{font-size:13px}#ytproNativeTools select,#ytproNativeTools input{min-height:40px;box-sizing:border-box;border:0;border-radius:10px;padding:8px 10px;font-size:14px}#ytproNativeTools select{min-width:120px;flex:1}#ytproNativeTools input{width:88px}#ytproNativeTools button{min-height:42px;border:0;border-radius:11px;padding:8px 12px;font-size:14px}#ytproNativeTools .ghost{background:rgba(255,255,255,.9)}#ytproNativeTools .primary{background:#111;color:#fff}#ytproNativeTools .switch{display:flex;align-items:center;gap:8px;font-size:13px;flex-wrap:wrap}#ytproNativeTools .actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}@media (max-width:380px){#ytproNativeTools .actions{grid-template-columns:1fr}#ytproNativeTools input{width:100%}}</style>" +
+      "<div class='row' style='justify-content:space-between'><b class='title'>Ajustes de red</b><label class='switch'><span>Enable Conscrypt</span><input type='checkbox' id='ytproEnableConscrypt'></label></div>" +
+      "<div class='row'><label>DNS</label><select id='ytproDnsProvider'><option value='system'>System</option><option value='google'>Google</option><option value='cloudflare'>Cloudflare</option></select></div>" +
+      "<div class='row'><label>Timeout (s)</label><input id='ytproTimeoutSec' type='number' min='5' max='120' step='1'><button id='ytproSaveNetwork' class='primary'>Guardar red</button></div>" +
+      "<div class='actions'><button id='ytproBtnTimer' class='ghost'>Temporizador</button><button id='ytproBtnHistory' class='ghost'>Ver historial</button></div>";
 
     host.appendChild(box);
 
