@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#DD000000</color>
+    <color name="colorAccent">#FF5252</color>
+    <color name="colorBackground">#0F0C14</color>
+    <color name="colorError">#CF6679</color>
+    <color name="colorOnPrimary">#FFFFFF</color>
+    <color name="colorOnSecondary">#FFFFFF</color>
+    <color name="colorOnSurface">#ECE8F0</color>
+    <color name="colorPrimary">#1F1B24</color>
+    <color name="colorPrimaryDark">#121018</color>
+    <color name="colorSurface">#121018</color>
+    <color name="white">#FFFFFF</color>
+    <string name="app_name" translatable="false">YouTube Pro</string>
+    <string name="dl">Download</string>
+    <string name="dl_started">Download started</string>
+    <string name="grant_mic">Please Grant Microphone Permission in order to use Speech Recognition</string>
+    <string name="grant_storage">Please Grant Storage Permission in order to download files</string>
+    <string name="no_pip">Unfortunately, PIP is not supported on your Android version</string>
+    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryVariant">@color/colorPrimaryDark</item>
+        <item name="colorOnPrimary">@color/colorOnPrimary</item>
+        <item name="colorSecondary">@color/colorAccent</item>
+        <item name="colorOnSecondary">@color/colorOnSecondary</item>
+        <item name="colorSurface">@color/colorSurface</item>
+        <item name="colorOnSurface">@color/colorOnSurface</item>
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowBackground">@color/colorSurface</item>
+    </style>
+    <style name="NoStatusBar" parent="AppTheme">
+        <item name="android:windowFullscreen">true</item>
+    </style>
+</resources>
